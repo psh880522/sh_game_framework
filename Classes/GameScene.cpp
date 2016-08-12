@@ -1,37 +1,37 @@
 //
-//  GameObject.cpp
+//  GameScene.cpp
 //  sh_game_framework
 //
-//  Created by Challabros_Mac on 2016. 8. 10..
+//  Created by Challabros_Mac on 2016. 8. 12..
 //
 //
 
-#include "GameObject.hpp"
+#include "GameScene.hpp"
 #include "Commander.hpp"
 #include "StateMachine.hpp"
 
 NS_CORE_BEGIN
 
-GameObject::GameObject()
+GameScene::GameScene()
 : m_pCommander()
 , m_pStateMachine()
 {
     
 }
 
-GameObject::~GameObject()
+GameScene::~GameScene()
 {
     
 }
 
-void GameObject::initialize()
+void GameScene::initialize()
 {
     initComponent();
     initStateMachine();
     initCommander();
 }
 
-void GameObject::update(float delta)
+void GameScene::update(float delta)
 {
     Node::update(delta);
     
@@ -46,20 +46,20 @@ void GameObject::update(float delta)
     }
 }
 
-void GameObject::initComponent()
+void GameScene::initComponent()
 {
 }
 
-void GameObject::initStateMachine()
+void GameScene::initStateMachine()
 {
 }
 
-void GameObject::initCommander()
+void GameScene::initCommander()
 {
 }
 
-void GameObject::actionCommand(const cocos2d::Value &value)
+void GameScene::actionCommand(const cocos2d::Value &value)
 {
 }
-    
+
 NS_CORE_END

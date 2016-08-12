@@ -7,6 +7,7 @@
 //
 
 #include "StateMachine.hpp"
+#include "State.hpp"
 
 NS_CORE_BEGIN
 

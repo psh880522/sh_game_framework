@@ -13,10 +13,11 @@
 
 NS_CORE_BEGIN
 
+class IGameObject;
 class State : public cocos2d::Ref
 {
 public:
-    State(GameObject* pOwner);
+    State(IGameObject* pOwner);
     virtual ~State();
     
     void onEnter();
@@ -24,7 +25,7 @@ public:
     void onExit();
     
 protected:
-    GameObject* m_pOwner;
+    IGameObject* m_pOwner;
     
     CC_SYNTHESIZE_READONLY(bool, m_bFinished, Finished);
 };

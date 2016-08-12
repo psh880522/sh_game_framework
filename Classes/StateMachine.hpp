@@ -13,6 +13,7 @@
 
 NS_CORE_BEGIN
 
+class State;
 class StateMachine : public cocos2d::Ref
 {
 public:

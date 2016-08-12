@@ -144,8 +144,10 @@ struct spAtlas {
 
 /* Image files referenced in the atlas file will be prefixed with dir. */
 spAtlas* spAtlas_create (const char* data, int length, const char* dir, void* rendererObject);
+spAtlas* spAtlas_create_CH (const char* data, int length, const char* dir, void* rendererObject, float fAddX, float fAddY);
 /* Image files referenced in the atlas file will be prefixed with the directory containing the atlas file. */
 spAtlas* spAtlas_createFromFile (const char* path, void* rendererObject);
+spAtlas* spAtlas_createFromFile_CH (const char* path, void* rendererObject, float fAddX, float fAddY);
 void spAtlas_dispose (spAtlas* atlas);
 
 /* Returns 0 if the region was not found. */

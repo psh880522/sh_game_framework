@@ -120,7 +120,7 @@ static int readValue (const char* end, Str* str) {
 /* Returns the number of tuple values read (1, 2, 4, or 0 for failure). */
 static int readTuple (const char* end, Str tuple[]) {
 	int i;
-	Str str;
+	Str str = {NULL, NULL};
 	readLine(0, end, &str);
 	if (!beginPast(&str, ':')) return 0;
 
@@ -196,7 +196,7 @@ spAtlas* spAtlas_create (const char* begin, int length, const char* dir, void* r
 			memcpy(path, dir, dirLength);
 			if (needsSlash) path[dirLength] = '/';
 			strcpy(path + dirLength + needsSlash, name);
-
+    
 			page = spAtlasPage_create(self, name);
 			FREE(name);
 			if (lastPage)
@@ -294,6 +294,132 @@ spAtlas* spAtlas_create (const char* begin, int length, const char* dir, void* r
 	return self;
 }
 
+spAtlas* spAtlas_create_CH (const char* begin, int length, const char* dir, void* rendererObject, float fAddX, float fAddY)
+{
+    spAtlas* self;
+    
+    int count;
+    const char* end = begin + length;
+    int dirLength = (int)strlen(dir);
+    int needsSlash = dirLength > 0 && dir[dirLength - 1] != '/' && dir[dirLength - 1] != '\\';
+    
+    spAtlasPage *page = 0;
+    spAtlasPage *lastPage = 0;
+    spAtlasRegion *lastRegion = 0;
+    Str str;
+    Str tuple[4];
+    
+    self = NEW(spAtlas);
+    self->rendererObject = rendererObject;
+    
+    readLine(begin, 0, 0);
+    while (readLine(0, end, &str)) {
+        if (str.end - str.begin == 0) {
+            page = 0;
+        } else if (!page) {
+            char* name = mallocString(&str);
+            char* path = MALLOC(char, dirLength + needsSlash + strlen(name) + 1);
+            memcpy(path, dir, dirLength);
+            if (needsSlash) path[dirLength] = '/';
+            strcpy(path + dirLength + needsSlash, name);
+            
+            page = spAtlasPage_create(self, name);
+            FREE(name);
+            if (lastPage)
+                lastPage->next = page;
+            else
+                self->pages = page;
+            lastPage = page;
+            
+            switch (readTuple(end, tuple)) {
+                case 0:
+                    return abortAtlas(self);
+                case 2:  /* size is only optional for an atlas packed with an old TexturePacker. */
+                    page->width = toInt(tuple);
+                    page->height = toInt(tuple + 1);
+                    if (!readTuple(end, tuple)) return abortAtlas(self);
+            }
+            page->format = (spAtlasFormat)indexOf(formatNames, 7, tuple);
+            
+            if (!readTuple(end, tuple)) return abortAtlas(self);
+            page->minFilter = (spAtlasFilter)indexOf(textureFilterNames, 7, tuple);
+            page->magFilter = (spAtlasFilter)indexOf(textureFilterNames, 7, tuple + 1);
+            
+            if (!readValue(end, &str)) return abortAtlas(self);
+            if (!equals(&str, "none")) {
+                page->uWrap = *str.begin == 'x' ? SP_ATLAS_REPEAT : (*str.begin == 'y' ? SP_ATLAS_CLAMPTOEDGE : SP_ATLAS_REPEAT);
+                page->vWrap = *str.begin == 'x' ? SP_ATLAS_CLAMPTOEDGE : (*str.begin == 'y' ? SP_ATLAS_REPEAT : SP_ATLAS_REPEAT);
+            }
+            
+            _spAtlasPage_createTexture_CH(page, rendererObject);
+            FREE(path);
+        } else {
+            spAtlasRegion *region = spAtlasRegion_create();
+            if (lastRegion)
+                lastRegion->next = region;
+            else
+                self->regions = region;
+            lastRegion = region;
+            
+            region->page = page;
+            region->name = mallocString(&str);
+            
+            if (!readValue(end, &str)) return abortAtlas(self);
+            region->rotate = equals(&str, "true");
+            
+            if (readTuple(end, tuple) != 2) return abortAtlas(self);
+            region->x = toInt(tuple) + fAddX;
+            region->y = toInt(tuple + 1) + fAddY;
+            
+            if (readTuple(end, tuple) != 2) return abortAtlas(self);
+            region->width = toInt(tuple);
+            region->height = toInt(tuple + 1);
+            
+            region->u = region->x / (float)page->width;
+            region->v = region->y / (float)page->height;
+            if (region->rotate) {
+                region->u2 = (region->x + region->height) / (float)page->width;
+                region->v2 = (region->y + region->width) / (float)page->height;
+            } else {
+                region->u2 = (region->x + region->width) / (float)page->width;
+                region->v2 = (region->y + region->height) / (float)page->height;
+            }
+            
+            if (!(count = readTuple(end, tuple))) return abortAtlas(self);
+            if (count == 4) { /* split is optional */
+                region->splits = MALLOC(int, 4);
+                region->splits[0] = toInt(tuple);
+                region->splits[1] = toInt(tuple + 1);
+                region->splits[2] = toInt(tuple + 2);
+                region->splits[3] = toInt(tuple + 3);
+                
+                if (!(count = readTuple(end, tuple))) return abortAtlas(self);
+                if (count == 4) { /* pad is optional, but only present with splits */
+                    region->pads = MALLOC(int, 4);
+                    region->pads[0] = toInt(tuple);
+                    region->pads[1] = toInt(tuple + 1);
+                    region->pads[2] = toInt(tuple + 2);
+                    region->pads[3] = toInt(tuple + 3);
+                    
+                    if (!readTuple(end, tuple)) return abortAtlas(self);
+                }
+            }
+            
+            region->originalWidth = toInt(tuple);
+            region->originalHeight = toInt(tuple + 1);
+            
+            readTuple(end, tuple);
+            region->offsetX = toInt(tuple);
+            region->offsetY = toInt(tuple + 1);
+            
+            if (!readValue(end, &str)) return abortAtlas(self);
+            region->index = toInt(&str);
+        }
+    }
+    
+    return self;
+}
+
 spAtlas* spAtlas_createFromFile (const char* path, void* rendererObject) {
 	int dirLength;
 	char *dir;
@@ -314,10 +440,38 @@ spAtlas* spAtlas_createFromFile (const char* path, void* rendererObject) {
 
 	data = _spUtil_readFile(path, &length);
 	if (data) atlas = spAtlas_create(data, length, dir, rendererObject);
-
+    
 	FREE(data);
 	FREE(dir);
 	return atlas;
+}
+
+spAtlas* spAtlas_createFromFile_CH (const char* path, void* rendererObject, float fAddX, float fAddY)
+{
+
+    int dirLength;
+    char *dir;
+    int length;
+    const char* data;
+    
+    spAtlas* atlas = 0;
+    
+    /* Get directory from atlas path. */
+    const char* lastForwardSlash = strrchr(path, '/');
+    const char* lastBackwardSlash = strrchr(path, '\\');
+    const char* lastSlash = lastForwardSlash > lastBackwardSlash ? lastForwardSlash : lastBackwardSlash;
+    if (lastSlash == path) lastSlash++; /* Never drop starting slash. */
+    dirLength = (int)(lastSlash ? lastSlash - path : 0);
+    dir = MALLOC(char, dirLength + 1);
+    memcpy(dir, path, dirLength);
+    dir[dirLength] = '\0';
+    
+    data = _spUtil_readFile(path, &length);
+    if (data) atlas = spAtlas_create_CH(data, length, dir, rendererObject, fAddX, fAddY);
+    
+    FREE(data);
+    FREE(dir);
+    return atlas;
 }
 
 void spAtlas_dispose (spAtlas* self) {

@@ -46,9 +46,17 @@ typedef std::function<void(int trackIndex, spEvent* event)> EventListener;
   * played later. */
 class SkeletonAnimation: public SkeletonRenderer {
 public:
+    typedef std::map < std::string, spSkeletonData* > TYPE_SKELETON_DATA_CACHE;
+    static TYPE_SKELETON_DATA_CACHE s_skeleton_data_cache;
+    
+    static void removeCache(const std::string& filename);
+    static void removeCacheAll();
+    
+public:
 	static SkeletonAnimation* createWithData (spSkeletonData* skeletonData);
 	static SkeletonAnimation* createWithFile (const std::string& skeletonDataFile, spAtlas* atlas, float scale = 1);
 	static SkeletonAnimation* createWithFile (const std::string& skeletonDataFile, const std::string& atlasFile, float scale = 1);
+    static SkeletonAnimation* createWithFile (const std::string& skeletonDataFile, const std::string& atlasFile,  cocos2d::Texture2D* texture, cocos2d::Vec2 vAddPos, float scale = 1, bool bAutoRelease = true);
 
 	virtual void update (float deltaTime);
 
@@ -76,14 +84,17 @@ public:
 
 	spAnimationState* getState() const;
 
-protected:
+CC_CONSTRUCTOR_ACCESS:
 	SkeletonAnimation ();
 	SkeletonAnimation (spSkeletonData* skeletonData);
 	SkeletonAnimation (const std::string&skeletonDataFile, spAtlas* atlas, float scale = 1);
 	SkeletonAnimation (const std::string& skeletonDataFile, const std::string& atlasFile, float scale = 1);
+    SkeletonAnimation (const std::string& skeletonDataFile, const std::string& atlasFile, cocos2d::Texture2D* texture, cocos2d::Vec2 vAddPos, float scale = 1);
+    
 	virtual ~SkeletonAnimation ();
 	void initialize ();
 
+protected:
 	spAnimationState* _state;
 
 	bool _ownsAnimationStateData;

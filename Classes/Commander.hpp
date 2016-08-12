@@ -13,6 +13,7 @@
 
 NS_CORE_BEGIN
 
+class IGameObject;
 class Commander : public cocos2d::Ref
 {
 public:

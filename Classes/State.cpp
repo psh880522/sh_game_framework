@@ -7,10 +7,11 @@
 //
 
 #include "State.hpp"
+#include "IGameObject.hpp"
 
 NS_CORE_BEGIN
 
-State::State(GameObject* pOwner)
+State::State(IGameObject* pOwner)
 : m_pOwner(pOwner)
 , m_bFinished(true)
 {

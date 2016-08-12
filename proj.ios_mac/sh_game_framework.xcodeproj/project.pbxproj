@@ -16,6 +16,12 @@
 		2D0E53D01D5C24AB006AC7B0 /* Commander.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2D0E53CE1D5C24AB006AC7B0 /* Commander.cpp */; };
 		2D0E53D41D5C2A26006AC7B0 /* StateMachine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2D0E53D21D5C2A26006AC7B0 /* StateMachine.cpp */; };
 		2D0E53D71D5C2A39006AC7B0 /* State.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2D0E53D51D5C2A39006AC7B0 /* State.cpp */; };
+		2D0E53DD1D5D9E6B006AC7B0 /* GameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2D0E53DB1D5D9E6B006AC7B0 /* GameScene.cpp */; };
+		2D0E53E11D5DAB3F006AC7B0 /* bird.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 2D0E53DE1D5DAB3F006AC7B0 /* bird.atlas */; };
+		2D0E53E21D5DAB3F006AC7B0 /* bird.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D0E53DF1D5DAB3F006AC7B0 /* bird.json */; };
+		2D0E53E31D5DAB3F006AC7B0 /* bird.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D0E53E01D5DAB3F006AC7B0 /* bird.png */; };
+		2D0E53E61D5DAB8A006AC7B0 /* Bird.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2D0E53E41D5DAB89006AC7B0 /* Bird.cpp */; };
+		2D0E53E91D5DAF09006AC7B0 /* AniRenderComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2D0E53E71D5DAF09006AC7B0 /* AniRenderComponent.cpp */; };
 		3EACC98F19EE6D4300EB3C5E /* res in Resources */ = {isa = PBXBuildFile; fileRef = 3EACC98E19EE6D4300EB3C5E /* res */; };
 		3EACC99019EE6D4300EB3C5E /* res in Resources */ = {isa = PBXBuildFile; fileRef = 3EACC98E19EE6D4300EB3C5E /* res */; };
 		46880B7B19C43A67006E1F66 /* CloseNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 46880B7619C43A67006E1F66 /* CloseNormal.png */; };
@@ -113,7 +119,6 @@
 		2D0E53C51D5B2589006AC7B0 /* GameObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameObject.cpp; sourceTree = "<group>"; };
 		2D0E53C61D5B2589006AC7B0 /* GameObject.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GameObject.hpp; sourceTree = "<group>"; };
 		2D0E53CC1D5C1CFA006AC7B0 /* IGameObject.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = IGameObject.hpp; sourceTree = "<group>"; };
-		2D0E53CD1D5C1F10006AC7B0 /* Macro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macro.h; sourceTree = "<group>"; };
 		2D0E53CE1D5C24AB006AC7B0 /* Commander.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Commander.cpp; sourceTree = "<group>"; };
 		2D0E53CF1D5C24AB006AC7B0 /* Commander.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Commander.hpp; sourceTree = "<group>"; };
 		2D0E53D21D5C2A26006AC7B0 /* StateMachine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StateMachine.cpp; sourceTree = "<group>"; };
@@ -121,6 +126,16 @@
 		2D0E53D51D5C2A39006AC7B0 /* State.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = State.cpp; sourceTree = "<group>"; };
 		2D0E53D61D5C2A39006AC7B0 /* State.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = State.hpp; sourceTree = "<group>"; };
 		2D0E53D81D5D7651006AC7B0 /* Core.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Core.h; sourceTree = "<group>"; };
+		2D0E53DA1D5D9DEA006AC7B0 /* Game.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
+		2D0E53DB1D5D9E6B006AC7B0 /* GameScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameScene.cpp; sourceTree = "<group>"; };
+		2D0E53DC1D5D9E6B006AC7B0 /* GameScene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GameScene.hpp; sourceTree = "<group>"; };
+		2D0E53DE1D5DAB3F006AC7B0 /* bird.atlas */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bird.atlas; sourceTree = "<group>"; };
+		2D0E53DF1D5DAB3F006AC7B0 /* bird.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = bird.json; sourceTree = "<group>"; };
+		2D0E53E01D5DAB3F006AC7B0 /* bird.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bird.png; sourceTree = "<group>"; };
+		2D0E53E41D5DAB89006AC7B0 /* Bird.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Bird.cpp; sourceTree = "<group>"; };
+		2D0E53E51D5DAB8A006AC7B0 /* Bird.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Bird.hpp; sourceTree = "<group>"; };
+		2D0E53E71D5DAF09006AC7B0 /* AniRenderComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AniRenderComponent.cpp; sourceTree = "<group>"; };
+		2D0E53E81D5DAF09006AC7B0 /* AniRenderComponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AniRenderComponent.hpp; sourceTree = "<group>"; };
 		3EACC98E19EE6D4300EB3C5E /* res */ = {isa = PBXFileReference; lastKnownFileType = folder; path = res; sourceTree = "<group>"; };
 		46880B7619C43A67006E1F66 /* CloseNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloseNormal.png; sourceTree = "<group>"; };
 		46880B7719C43A67006E1F66 /* CloseSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloseSelected.png; sourceTree = "<group>"; };
@@ -293,18 +308,34 @@
 				2D0E53C51D5B2589006AC7B0 /* GameObject.cpp */,
 				2D0E53C61D5B2589006AC7B0 /* GameObject.hpp */,
 				2D0E53CC1D5C1CFA006AC7B0 /* IGameObject.hpp */,
-				2D0E53CD1D5C1F10006AC7B0 /* Macro.h */,
 				2D0E53D51D5C2A39006AC7B0 /* State.cpp */,
 				2D0E53D61D5C2A39006AC7B0 /* State.hpp */,
 				2D0E53D21D5C2A26006AC7B0 /* StateMachine.cpp */,
 				2D0E53D31D5C2A26006AC7B0 /* StateMachine.hpp */,
+				2D0E53DB1D5D9E6B006AC7B0 /* GameScene.cpp */,
+				2D0E53DC1D5D9E6B006AC7B0 /* GameScene.hpp */,
 			);
 			name = core;
+			sourceTree = "<group>";
+		};
+		2D0E53D91D5D9D8F006AC7B0 /* game */ = {
+			isa = PBXGroup;
+			children = (
+				2D0E53DA1D5D9DEA006AC7B0 /* Game.h */,
+				2D0E53E41D5DAB89006AC7B0 /* Bird.cpp */,
+				2D0E53E51D5DAB8A006AC7B0 /* Bird.hpp */,
+				2D0E53E71D5DAF09006AC7B0 /* AniRenderComponent.cpp */,
+				2D0E53E81D5DAF09006AC7B0 /* AniRenderComponent.hpp */,
+			);
+			name = game;
 			sourceTree = "<group>";
 		};
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2D0E53DE1D5DAB3F006AC7B0 /* bird.atlas */,
+				2D0E53DF1D5DAB3F006AC7B0 /* bird.json */,
+				2D0E53E01D5DAB3F006AC7B0 /* bird.png */,
 				521A8EA819F11F5000D177D7 /* fonts */,
 				3EACC98E19EE6D4300EB3C5E /* res */,
 				46880B7619C43A67006E1F66 /* CloseNormal.png */,
@@ -318,6 +349,7 @@
 		46880B8319C43A87006E1F66 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				2D0E53D91D5D9D8F006AC7B0 /* game */,
 				2D0E53D11D5C284A006AC7B0 /* core */,
 				46880B8419C43A87006E1F66 /* AppDelegate.cpp */,
 				46880B8519C43A87006E1F66 /* AppDelegate.h */,
@@ -477,10 +509,12 @@
 			files = (
 				5087E78117EB970100C73F5D /* Icon-120.png in Resources */,
 				5087E78617EB970100C73F5D /* Icon-76.png in Resources */,
+				2D0E53E31D5DAB3F006AC7B0 /* bird.png in Resources */,
 				5087E77F17EB970100C73F5D /* Default@2x.png in Resources */,
 				50EF629917ECD46A001EB2F8 /* Icon-100.png in Resources */,
 				5087E78317EB970100C73F5D /* Icon-152.png in Resources */,
 				46880B8119C43A67006E1F66 /* HelloWorld.png in Resources */,
+				2D0E53E11D5DAB3F006AC7B0 /* bird.atlas in Resources */,
 				46880B7D19C43A67006E1F66 /* CloseSelected.png in Resources */,
 				5087E77D17EB970100C73F5D /* Default-568h@2x.png in Resources */,
 				5087E78517EB970100C73F5D /* Icon-72.png in Resources */,
@@ -488,6 +522,7 @@
 				521A8EA919F11F5000D177D7 /* fonts in Resources */,
 				50EF62A317ECD613001EB2F8 /* Icon-50.png in Resources */,
 				5087E78017EB970100C73F5D /* Icon-114.png in Resources */,
+				2D0E53E21D5DAB3F006AC7B0 /* bird.json in Resources */,
 				50EF62A217ECD613001EB2F8 /* Icon-29.png in Resources */,
 				50EF629617ECD46A001EB2F8 /* Icon-40.png in Resources */,
 				5087E78217EB970100C73F5D /* Icon-144.png in Resources */,
@@ -521,11 +556,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D0E53DD1D5D9E6B006AC7B0 /* GameScene.cpp in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
+				2D0E53E91D5DAF09006AC7B0 /* AniRenderComponent.cpp in Sources */,
 				46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				2D0E53C71D5B2589006AC7B0 /* GameObject.cpp in Sources */,
 				2D0E53D71D5C2A39006AC7B0 /* State.cpp in Sources */,
+				2D0E53E61D5DAB8A006AC7B0 /* Bird.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				2D0E53D01D5C24AB006AC7B0 /* Commander.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,

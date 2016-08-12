@@ -1,13 +1,13 @@
 //
-//  GameObject.hpp
+//  GameScene.hpp
 //  sh_game_framework
 //
-//  Created by Challabros_Mac on 2016. 8. 10..
+//  Created by Challabros_Mac on 2016. 8. 12..
 //
 //
 
-#ifndef GameObject_hpp
-#define GameObject_hpp
+#ifndef GameScene_hpp
+#define GameScene_hpp
 
 #include "core.h"
 #include "IGameObject.hpp"
@@ -16,26 +16,26 @@ NS_CORE_BEGIN
 
 class Commander;
 class StateMachine;
-class GameObject
-: public cocos2d::Node
+class GameScene
+: public cocos2d::Scene
 , public IGameObject
 {
 public:
-    GameObject();
-    virtual ~GameObject();
+    GameScene();
+    virtual ~GameScene();
     
     virtual void initialize();
     
 public: // Node
     virtual void update(float delta) override;
     
-public: // IGameObject
+public: // IGameScene
     virtual void initComponent()                            override;
     virtual void initStateMachine()                         override;
     virtual void initCommander()                            override;
     virtual void actionCommand(const cocos2d::Value& value) override;
     
-protected:   
+protected:
     Commander*      m_pCommander;
     StateMachine*   m_pStateMachine;
     
@@ -43,4 +43,4 @@ protected:
 
 NS_CORE_END
 
-#endif /* GameObject_hpp */
+#endif /* GameScene_hpp */

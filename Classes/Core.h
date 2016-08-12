@@ -9,12 +9,8 @@
 #ifndef Core_h
 #define Core_h
 
-#include "Macro.h"
-#include "IGameObject.hpp"
-#include "GameObject.hpp"
-#include "Commander.hpp"
-#include "StateMachine.hpp"
-#include "State.hpp"
-
+#define NS_CORE_BEGIN                     namespace core {
+#define NS_CORE_END                       }
+#define USING_NS_CORE                     using namespace core
 
 #endif /* core_h */

@@ -39,7 +39,7 @@ using std::max;
 using std::vector;
 
 namespace spine {
-
+SkeletonAnimation::TYPE_SKELETON_DATA_CACHE SkeletonAnimation::s_skeleton_data_cache;
 void animationCallback (spAnimationState* state, int trackIndex, spEventType type, spEvent* event, int loopCount) {
 	((SkeletonAnimation*)state->rendererObject)->onAnimationStateEvent(trackIndex, type, event, loopCount);
 }
@@ -83,9 +83,42 @@ SkeletonAnimation* SkeletonAnimation::createWithFile (const std::string& skeleto
 }
 
 SkeletonAnimation* SkeletonAnimation::createWithFile (const std::string& skeletonDataFile, const std::string& atlasFile, float scale) {
-	SkeletonAnimation* node = new SkeletonAnimation(skeletonDataFile, atlasFile, scale);
-	node->autorelease();
-	return node;
+    
+//	SkeletonAnimation* node = new SkeletonAnimation(skeletonDataFile, atlasFile, scale);
+//	node->autorelease();
+//	return node;
+    
+    spSkeletonData* skeletonData;
+    auto cache_iter = spine::SkeletonAnimation::s_skeleton_data_cache.find(skeletonDataFile);
+    if (cache_iter != spine::SkeletonAnimation::s_skeleton_data_cache.end())
+    {
+        skeletonData = cache_iter->second;
+    }
+    else
+    {
+        spAtlas* atlas = spAtlas_createFromFile(atlasFile.c_str(), 0);
+        CCASSERT(atlas, "Error reading atlas file.");
+        
+        spSkeletonJson* json = spSkeletonJson_create(atlas);
+        json->scale = scale;
+        skeletonData = spSkeletonJson_readSkeletonDataFile(json, skeletonDataFile.c_str());
+        CCASSERT(skeletonData, json->error ? json->error : "Error reading skeleton data file.");
+        spSkeletonJson_dispose(json);
+        
+        spine::SkeletonAnimation::s_skeleton_data_cache.insert(TYPE_SKELETON_DATA_CACHE::value_type(skeletonDataFile, skeletonData));
+        CCLOG("SkeletonAnimation add cache : %s", skeletonDataFile.c_str());
+    }
+    
+    SkeletonAnimation* node = new (std::nothrow) SkeletonAnimation(skeletonData);
+    node->autorelease();
+    return node;
+}
+    
+SkeletonAnimation* SkeletonAnimation::createWithFile (const std::string& skeletonDataFile, const std::string& atlasFile,  cocos2d::Texture2D* texture, cocos2d::Vec2 vAddPos, float scale, bool bAutoRelease)
+{
+    SkeletonAnimation* node = new SkeletonAnimation(skeletonDataFile, atlasFile, texture, vAddPos, scale);
+    if( bAutoRelease ) node->autorelease();
+    return node;
 }
 
 void SkeletonAnimation::initialize () {
@@ -96,6 +129,10 @@ void SkeletonAnimation::initialize () {
 
 	_spAnimationState* stateInternal = (_spAnimationState*)_state;
 	stateInternal->disposeTrackEntry = disposeTrackEntry;
+}
+
+SkeletonAnimation::SkeletonAnimation ()
+		: SkeletonRenderer() {
 }
 
 SkeletonAnimation::SkeletonAnimation (spSkeletonData *skeletonData)
@@ -111,6 +148,12 @@ SkeletonAnimation::SkeletonAnimation (const std::string& skeletonDataFile, spAtl
 SkeletonAnimation::SkeletonAnimation (const std::string& skeletonDataFile, const std::string& atlasFile, float scale)
 		: SkeletonRenderer(skeletonDataFile, atlasFile, scale) {
 	initialize();
+}
+    
+SkeletonAnimation::SkeletonAnimation (const std::string& skeletonDataFile, const std::string& atlasFile, cocos2d::Texture2D* texture, cocos2d::Vec2 vAddPos, float scale)
+    : SkeletonRenderer(skeletonDataFile, atlasFile, texture, vAddPos, scale)
+{
+    initialize();
 }
 
 SkeletonAnimation::~SkeletonAnimation () {
@@ -246,4 +289,25 @@ spAnimationState* SkeletonAnimation::getState() const {
 	return _state;
 }
 
+void SkeletonAnimation::removeCache(const std::string& filename)
+{
+    auto cache_iter = s_skeleton_data_cache.find(filename);
+    if (cache_iter == s_skeleton_data_cache.end()) return;
+    
+    spSkeletonData_dispose(cache_iter->second);
+    s_skeleton_data_cache.erase(cache_iter);
+}
+
+void SkeletonAnimation::removeCacheAll()
+{
+    for (auto cache_iter = s_skeleton_data_cache.begin(); cache_iter != s_skeleton_data_cache.end();)
+    {
+        spSkeletonData_dispose(cache_iter->second);
+        ++cache_iter;
+    }
+    
+    
+    s_skeleton_data_cache.clear();
+}
+    
 }

@@ -41,6 +41,15 @@ void _spAtlasPage_createTexture (spAtlasPage* self, const char* path) {
 	self->height = texture->getPixelsHigh();
 }
 
+void _spAtlasPage_createTexture_CH( spAtlasPage* self, void* rendererObject)
+{
+    Texture2D* texture = ( Texture2D* )rendererObject;
+    texture->retain();
+    self->rendererObject = rendererObject;
+    self->width = texture->getPixelsWide();
+    self->height = texture->getPixelsHigh();
+}
+
 void _spAtlasPage_disposeTexture (spAtlasPage* self) {
 	((Texture2D*)self->rendererObject)->release();
 }
