@@ -10,29 +10,14 @@
 
 NS_CORE_BEGIN
 
-State *State::create()
+State::State(GameObject* pOwner)
+: m_pOwner(pOwner)
+, m_bFinished(true)
 {
-    State *ret = new (std::nothrow) State();
-    if (ret)
-    {
-        ret->autorelease();
-        return ret;
-    }
-    else
-    {
-        return nullptr;
-    }
-}
-
-State::State()
-: m_bFinished(true)
-{
-    
 }
 
 State::~State()
 {
-    
 }
 
 void State::onEnter()

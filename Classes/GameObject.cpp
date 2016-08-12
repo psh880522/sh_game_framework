@@ -7,8 +7,6 @@
 //
 
 #include "GameObject.hpp"
-#include "Commander.hpp"
-#include "StateMachine.hpp"
 
 NS_CORE_BEGIN
 
@@ -29,8 +27,6 @@ void GameObject::initialize()
     initComponent();
     initStateMachine();
     initCommander();
-    
-    scheduleUpdate();
 }
 
 void GameObject::update(float delta)

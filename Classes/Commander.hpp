@@ -9,12 +9,10 @@
 #ifndef Commander_hpp
 #define Commander_hpp
 
-#include "cocos2d.h"
-#include "Macro.hpp"
+#include "core.h"
 
 NS_CORE_BEGIN
 
-class IGameObject;
 class Commander : public cocos2d::Ref
 {
 public:

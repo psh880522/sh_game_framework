@@ -9,22 +9,22 @@
 #ifndef State_hpp
 #define State_hpp
 
-#include "cocos2d.h"
-#include "Macro.hpp"
+#include "core.h"
 
 NS_CORE_BEGIN
 
 class State : public cocos2d::Ref
 {
 public:
-    static State* create();
-    
-    State();
+    State(GameObject* pOwner);
     virtual ~State();
     
     void onEnter();
     void onUpdate(float delta);
     void onExit();
+    
+protected:
+    GameObject* m_pOwner;
     
     CC_SYNTHESIZE_READONLY(bool, m_bFinished, Finished);
 };

@@ -9,12 +9,10 @@
 #ifndef StateMachine_hpp
 #define StateMachine_hpp
 
-#include "cocos2d.h"
-#include "Macro.hpp"
+#include "core.h"
 
 NS_CORE_BEGIN
 
-class State;
 class StateMachine : public cocos2d::Ref
 {
 public:

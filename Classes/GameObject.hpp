@@ -9,15 +9,10 @@
 #ifndef GameObject_hpp
 #define GameObject_hpp
 
-#include "Macro.hpp"
-
-#include "cocos2d.h"
-#include "IGameObject.hpp"
+#include "core.h"
 
 NS_CORE_BEGIN
 
-class Commander;
-class StateMachine;
 class GameObject
 : public cocos2d::Node
 , public IGameObject

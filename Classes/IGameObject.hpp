@@ -9,7 +9,7 @@
 #ifndef IGameObject_hpp
 #define IGameObject_hpp
 
-#include "Macro.hpp"
+#include "core.h"
 
 NS_CORE_BEGIN
     
