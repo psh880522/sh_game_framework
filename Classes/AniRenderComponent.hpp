@@ -15,13 +15,14 @@
 class CAniRenderComponent : public cocos2d::Component
 {
 public:
-    static CAniRenderComponent* create(const std::string& strFileName);
+    static CAniRenderComponent* create(const std::string& strName, const std::string& strFileName);
     
-    CAniRenderComponent();
+    CAniRenderComponent(const std::string& strName, const std::string& strFileName);
     virtual ~CAniRenderComponent();
     
-    void initialize(const std::string& strFileName);
     void setAnimation(const std::string& strAniName, const bool bLoop);
+    bool setSkin(const std::string& skinName);
+    void setPosition(const cocos2d::Vec2& position);
     
 public: // Component
     virtual void onEnter();
@@ -30,6 +31,7 @@ public: // Component
     
 private:
     spine::SkeletonAnimation* m_pRenderer;
+    std::string m_strFileName;
 };
 
 #endif /* AniRenderComponent_hpp */

@@ -14,11 +14,11 @@
 NS_CORE_BEGIN
 
 class IGameObject;
-class State : public cocos2d::Ref
+class CState : public cocos2d::Ref
 {
 public:
-    State(IGameObject* pOwner);
-    virtual ~State();
+    CState(IGameObject* pOwner);
+    virtual ~CState();
     
     void onEnter();
     void onUpdate(float delta);

@@ -14,19 +14,18 @@
 
 NS_CORE_BEGIN
 
-class Commander;
-class StateMachine;
-class GameScene
+class CCommander;
+class CStateMachine;
+class CGameScene
 : public cocos2d::Scene
 , public IGameObject
 {
 public:
-    GameScene();
-    virtual ~GameScene();
-    
-    virtual void initialize();
+    CGameScene();
+    virtual ~CGameScene();
     
 public: // Node
+    virtual bool init() override;
     virtual void update(float delta) override;
     
 public: // IGameScene
@@ -36,8 +35,8 @@ public: // IGameScene
     virtual void actionCommand(const cocos2d::Value& value) override;
     
 protected:
-    Commander*      m_pCommander;
-    StateMachine*   m_pStateMachine;
+    CCommander*      m_pCommander;
+    CStateMachine*   m_pStateMachine;
     
 };
 

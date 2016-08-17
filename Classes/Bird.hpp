@@ -12,13 +12,17 @@
 #include "core.h"
 #include "GameObject.hpp"
 
-USING_NS_CORE;
-
-class CBird : public GameObject
+class CBird : public core::CGameObject
 {
 public:
     CBird();
     virtual ~CBird();
+    
+    static CBird* create(const std::string& strSkin);
+    void initialize(const std::string& strSkin);
+
+public:
+    virtual void setContentSize(const cocos2d::Size& size) override;
     
 public: // IGameObject
     virtual void initComponent()                            override;

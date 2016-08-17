@@ -14,11 +14,11 @@
 NS_CORE_BEGIN
 
 class IGameObject;
-class Commander : public cocos2d::Ref
+class CCommander : public cocos2d::Ref
 {
 public:
-    Commander(IGameObject* pOwner);
-    virtual ~Commander();
+    CCommander(IGameObject* pOwner);
+    virtual ~CCommander();
     
     virtual void initialize();
     virtual void update(float delta);

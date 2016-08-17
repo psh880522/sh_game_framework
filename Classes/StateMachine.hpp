@@ -13,8 +13,8 @@
 
 NS_CORE_BEGIN
 
-class State;
-class StateMachine : public cocos2d::Ref
+class CState;
+class CStateMachine : public cocos2d::Ref
 {
 public:
     enum class ETransition
@@ -24,16 +24,16 @@ public:
         TR_NUM
     };
 public:
-    static StateMachine* create();
+    static CStateMachine* create();
     
-    StateMachine();
-    virtual ~StateMachine();
+    CStateMachine();
+    virtual ~CStateMachine();
     
     void initialize();
     
     void update(float delta);
     
-    void addState(int nState, State* pState);
+    void addState(int nState, CState* pState);
     
     void changeState(int nState, ETransition eTransition = ETransition::TR_SAFE);
     
@@ -41,7 +41,7 @@ private:
     void _changeNextState();
 
 private:
-    cocos2d::Map<int, State*> m_mStates;
+    cocos2d::Map<int, CState*> m_mStates;
     
     CC_SYNTHESIZE_READONLY(int, m_nCurrentState, CurrentState);
     CC_SYNTHESIZE(int, m_nNextState,    NextState);

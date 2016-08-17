@@ -11,26 +11,26 @@
 
 NS_CORE_BEGIN
 
-State::State(IGameObject* pOwner)
+CState::CState(IGameObject* pOwner)
 : m_pOwner(pOwner)
 , m_bFinished(true)
 {
 }
 
-State::~State()
+CState::~CState()
 {
 }
 
-void State::onEnter()
+void CState::onEnter()
 {
     m_bFinished = false;
 }
 
-void State::onUpdate(float delta)
+void CState::onUpdate(float delta)
 {
 }
 
-void State::onExit()
+void CState::onExit()
 {
 }
 

@@ -22,6 +22,8 @@
 		2D0E53E31D5DAB3F006AC7B0 /* bird.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D0E53E01D5DAB3F006AC7B0 /* bird.png */; };
 		2D0E53E61D5DAB8A006AC7B0 /* Bird.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2D0E53E41D5DAB89006AC7B0 /* Bird.cpp */; };
 		2D0E53E91D5DAF09006AC7B0 /* AniRenderComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2D0E53E71D5DAF09006AC7B0 /* AniRenderComponent.cpp */; };
+		2DE7AEED1D62E2AA00A292F8 /* MainScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DE7AEEB1D62E2AA00A292F8 /* MainScene.cpp */; };
+		2DE7AEF41D62F98600A292F8 /* BirdIdleState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DE7AEF21D62F98600A292F8 /* BirdIdleState.cpp */; };
 		3EACC98F19EE6D4300EB3C5E /* res in Resources */ = {isa = PBXBuildFile; fileRef = 3EACC98E19EE6D4300EB3C5E /* res */; };
 		3EACC99019EE6D4300EB3C5E /* res in Resources */ = {isa = PBXBuildFile; fileRef = 3EACC98E19EE6D4300EB3C5E /* res */; };
 		46880B7B19C43A67006E1F66 /* CloseNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 46880B7619C43A67006E1F66 /* CloseNormal.png */; };
@@ -136,6 +138,10 @@
 		2D0E53E51D5DAB8A006AC7B0 /* Bird.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Bird.hpp; sourceTree = "<group>"; };
 		2D0E53E71D5DAF09006AC7B0 /* AniRenderComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AniRenderComponent.cpp; sourceTree = "<group>"; };
 		2D0E53E81D5DAF09006AC7B0 /* AniRenderComponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AniRenderComponent.hpp; sourceTree = "<group>"; };
+		2DE7AEEB1D62E2AA00A292F8 /* MainScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainScene.cpp; sourceTree = "<group>"; };
+		2DE7AEEC1D62E2AA00A292F8 /* MainScene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MainScene.hpp; sourceTree = "<group>"; };
+		2DE7AEF21D62F98600A292F8 /* BirdIdleState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BirdIdleState.cpp; sourceTree = "<group>"; };
+		2DE7AEF31D62F98600A292F8 /* BirdIdleState.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BirdIdleState.hpp; sourceTree = "<group>"; };
 		3EACC98E19EE6D4300EB3C5E /* res */ = {isa = PBXFileReference; lastKnownFileType = folder; path = res; sourceTree = "<group>"; };
 		46880B7619C43A67006E1F66 /* CloseNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloseNormal.png; sourceTree = "<group>"; };
 		46880B7719C43A67006E1F66 /* CloseSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloseSelected.png; sourceTree = "<group>"; };
@@ -321,13 +327,49 @@
 		2D0E53D91D5D9D8F006AC7B0 /* game */ = {
 			isa = PBXGroup;
 			children = (
+				2DE7AEF01D62F8CE00A292F8 /* Component */,
 				2D0E53DA1D5D9DEA006AC7B0 /* Game.h */,
+				2DE7AEEF1D62F8C200A292F8 /* Object */,
+				2DE7AEEE1D62F8B400A292F8 /* Scene */,
+			);
+			name = game;
+			sourceTree = "<group>";
+		};
+		2DE7AEEE1D62F8B400A292F8 /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				2DE7AEEB1D62E2AA00A292F8 /* MainScene.cpp */,
+				2DE7AEEC1D62E2AA00A292F8 /* MainScene.hpp */,
+			);
+			name = Scene;
+			sourceTree = "<group>";
+		};
+		2DE7AEEF1D62F8C200A292F8 /* Object */ = {
+			isa = PBXGroup;
+			children = (
+				2DE7AEF11D62F8ED00A292F8 /* State */,
 				2D0E53E41D5DAB89006AC7B0 /* Bird.cpp */,
 				2D0E53E51D5DAB8A006AC7B0 /* Bird.hpp */,
+			);
+			name = Object;
+			sourceTree = "<group>";
+		};
+		2DE7AEF01D62F8CE00A292F8 /* Component */ = {
+			isa = PBXGroup;
+			children = (
 				2D0E53E71D5DAF09006AC7B0 /* AniRenderComponent.cpp */,
 				2D0E53E81D5DAF09006AC7B0 /* AniRenderComponent.hpp */,
 			);
-			name = game;
+			name = Component;
+			sourceTree = "<group>";
+		};
+		2DE7AEF11D62F8ED00A292F8 /* State */ = {
+			isa = PBXGroup;
+			children = (
+				2DE7AEF21D62F98600A292F8 /* BirdIdleState.cpp */,
+				2DE7AEF31D62F98600A292F8 /* BirdIdleState.hpp */,
+			);
+			name = State;
 			sourceTree = "<group>";
 		};
 		46880B7519C43A67006E1F66 /* Resources */ = {
@@ -562,12 +604,14 @@
 				46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				2D0E53C71D5B2589006AC7B0 /* GameObject.cpp in Sources */,
+				2DE7AEF41D62F98600A292F8 /* BirdIdleState.cpp in Sources */,
 				2D0E53D71D5C2A39006AC7B0 /* State.cpp in Sources */,
 				2D0E53E61D5DAB8A006AC7B0 /* Bird.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				2D0E53D01D5C24AB006AC7B0 /* Commander.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 				2D0E53D41D5C2A26006AC7B0 /* StateMachine.cpp in Sources */,
+				2DE7AEED1D62E2AA00A292F8 /* MainScene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

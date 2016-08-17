@@ -12,26 +12,28 @@
 
 NS_CORE_BEGIN
 
-GameObject::GameObject()
+CGameObject::CGameObject()
 : m_pCommander()
 , m_pStateMachine()
 {
     
 }
 
-GameObject::~GameObject()
+CGameObject::~CGameObject()
 {
     
 }
 
-void GameObject::initialize()
+bool CGameObject::init()
 {
     initComponent();
     initStateMachine();
     initCommander();
+    
+    return true;
 }
 
-void GameObject::update(float delta)
+void CGameObject::update(float delta)
 {
     Node::update(delta);
     
@@ -46,19 +48,19 @@ void GameObject::update(float delta)
     }
 }
 
-void GameObject::initComponent()
+void CGameObject::initComponent()
 {
 }
 
-void GameObject::initStateMachine()
+void CGameObject::initStateMachine()
 {
 }
 
-void GameObject::initCommander()
+void CGameObject::initCommander()
 {
 }
 
-void GameObject::actionCommand(const cocos2d::Value &value)
+void CGameObject::actionCommand(const cocos2d::Value &value)
 {
 }
     

@@ -11,9 +11,9 @@
 
 NS_CORE_BEGIN
 
-StateMachine *StateMachine::create()
+CStateMachine *CStateMachine::create()
 {
-    StateMachine *ret = new (std::nothrow) StateMachine();
+    CStateMachine *ret = new (std::nothrow) CStateMachine();
     if (ret)
     {
         ret->initialize();
@@ -27,7 +27,7 @@ StateMachine *StateMachine::create()
     }
 }
 
-StateMachine::StateMachine()
+CStateMachine::CStateMachine()
 : m_mStates()
 , m_nCurrentState(-1)
 , m_nNextState(-1)
@@ -35,21 +35,21 @@ StateMachine::StateMachine()
     
 }
 
-StateMachine::~StateMachine()
+CStateMachine::~CStateMachine()
 {
     m_mStates.clear();
 }
 
-void StateMachine::initialize()
+void CStateMachine::initialize()
 {
     m_mStates.clear();
 }
 
-void StateMachine::update(float delta)
+void CStateMachine::update(float delta)
 {
     CC_ASSERT(m_mStates.find(m_nCurrentState) != m_mStates.end());
     
-    State* pCurrentState = m_mStates.at(m_nCurrentState);
+    CState* pCurrentState = m_mStates.at(m_nCurrentState);
     pCurrentState->onUpdate(delta);
     
     if(pCurrentState->getFinished() == true && m_nNextState > -1)
@@ -60,14 +60,14 @@ void StateMachine::update(float delta)
     }
 }
 
-void StateMachine::addState(int nState, State* pState)
+void CStateMachine::addState(int nState, CState* pState)
 {
     CC_ASSERT(m_mStates.find(nState) == m_mStates.end());
     
     m_mStates.insert(nState, pState);
 }
 
-void StateMachine::changeState(int nState, ETransition eTransition)
+void CStateMachine::changeState(int nState, ETransition eTransition)
 {
     CC_ASSERT(m_mStates.find(nState) != m_mStates.end());
     
@@ -80,7 +80,7 @@ void StateMachine::changeState(int nState, ETransition eTransition)
         {
             m_nNextState = nState;
             
-            State* pCurrentState = m_mStates.at(m_nCurrentState);
+            CState* pCurrentState = m_mStates.at(m_nCurrentState);
             pCurrentState->onExit();
             
             _changeNextState();
@@ -89,14 +89,14 @@ void StateMachine::changeState(int nState, ETransition eTransition)
     }
 }
 
-void StateMachine::_changeNextState()
+void CStateMachine::_changeNextState()
 {
     CC_ASSERT(m_mStates.find(m_nNextState) != m_mStates.end());
     
     m_nCurrentState = m_nNextState;
     m_nNextState = -1;
     
-    State* pCurrentState = m_mStates.at(m_nCurrentState);
+    CState* pCurrentState = m_mStates.at(m_nCurrentState);
     pCurrentState->onEnter();
 }
 

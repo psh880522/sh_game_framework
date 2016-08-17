@@ -11,26 +11,26 @@
 
 NS_CORE_BEGIN
 
-Commander::Commander(IGameObject* pOwner)
+CCommander::CCommander(IGameObject* pOwner)
 : m_pOwner(pOwner)
 {
     
 }
 
-Commander::~Commander()
+CCommander::~CCommander()
 {
     
 }
 
-void Commander::initialize()
+void CCommander::initialize()
 {
 }
 
-void Commander::update(float delta)
+void CCommander::update(float delta)
 {
 }
 
-void Commander::actionCommand(const cocos2d::Value &value)
+void CCommander::actionCommand(const cocos2d::Value &value)
 {
     CC_ASSERT(m_pOwner != nullptr);
     

@@ -8,12 +8,13 @@
 
 #include "AniRenderComponent.hpp"
 
-CAniRenderComponent* CAniRenderComponent::create(const std::string& strFileName)
+USING_NS_CC;
+
+CAniRenderComponent* CAniRenderComponent::create(const std::string& strName, const std::string& strFileName)
 {
-    CAniRenderComponent * ret = new (std::nothrow) CAniRenderComponent();
+    CAniRenderComponent * ret = new (std::nothrow) CAniRenderComponent(strName, strFileName);
     if (ret != nullptr && ret->init())
     {
-        ret->initialize(strFileName);
         ret->autorelease();
     }
     else
@@ -23,20 +24,15 @@ CAniRenderComponent* CAniRenderComponent::create(const std::string& strFileName)
     return ret;
 }
 
-CAniRenderComponent::CAniRenderComponent(void)
+CAniRenderComponent::CAniRenderComponent(const std::string& strName, const std::string& strFileName)
 : m_pRenderer()
+, m_strFileName(strFileName)
 {
-
+    setName(strName);
 }
 
 CAniRenderComponent::~CAniRenderComponent(void)
 {
-}
-
-void CAniRenderComponent::initialize(const std::string& strFileName)
-{
-    m_pRenderer = spine::SkeletonAnimation::createWithFile(strFileName + ".json",
-                                                           strFileName + ".atlas");
 }
 
 void CAniRenderComponent::setAnimation(const std::string& strAniName, const bool bLoop)
@@ -44,8 +40,21 @@ void CAniRenderComponent::setAnimation(const std::string& strAniName, const bool
     m_pRenderer->setAnimation(0, strAniName, bLoop);
 }
 
+bool CAniRenderComponent::setSkin(const std::string& skinName)
+{
+    return m_pRenderer->setSkin(skinName);
+}
+
+void CAniRenderComponent::setPosition(const cocos2d::Vec2& position)
+{
+    m_pRenderer->setPosition(position);
+}
+
 void CAniRenderComponent::onEnter()
 {
+    m_pRenderer = spine::SkeletonAnimation::createWithFile(m_strFileName + ".json",
+                                                           m_strFileName + ".atlas");
+    getOwner()->addChild(m_pRenderer);
 }
 
 void CAniRenderComponent::onExit()

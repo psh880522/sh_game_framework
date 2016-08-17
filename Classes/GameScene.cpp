@@ -12,26 +12,28 @@
 
 NS_CORE_BEGIN
 
-GameScene::GameScene()
+CGameScene::CGameScene()
 : m_pCommander()
 , m_pStateMachine()
 {
     
 }
 
-GameScene::~GameScene()
+CGameScene::~CGameScene()
 {
     
 }
 
-void GameScene::initialize()
+bool CGameScene::init()
 {
     initComponent();
     initStateMachine();
     initCommander();
+    
+    return true;
 }
 
-void GameScene::update(float delta)
+void CGameScene::update(float delta)
 {
     Node::update(delta);
     
@@ -46,19 +48,19 @@ void GameScene::update(float delta)
     }
 }
 
-void GameScene::initComponent()
+void CGameScene::initComponent()
 {
 }
 
-void GameScene::initStateMachine()
+void CGameScene::initStateMachine()
 {
 }
 
-void GameScene::initCommander()
+void CGameScene::initCommander()
 {
 }
 
-void GameScene::actionCommand(const cocos2d::Value &value)
+void CGameScene::actionCommand(const cocos2d::Value &value)
 {
 }
 
