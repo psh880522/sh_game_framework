@@ -42,17 +42,14 @@ void CMainScene::initialize()
 {
     Size visibleSize = Director::getInstance()->getVisibleSize();
     
-    CBird* pBird = CBird::create("bird01");
-    pBird->setAnchorPoint(Vec2::ANCHOR_MIDDLE_BOTTOM);
-    pBird->setPosition(Vec2(visibleSize * 0.5f));
-    addChild(pBird);
-    
-//    DelayTime* pDelay = DelayTime::create(5.0f);
-//    CallFunc* pCall = CallFunc::create([this](){
-//        Director::getInstance()->restart();
-//    });
-//    
-//    runAction(Sequence::create(pDelay, pCall, nullptr));
+    for(int i = 0; i < 10; ++i)
+    {
+        std::string str = StringUtils::format("bird%02d", i + 1);
+        CBird* pBird = CBird::create(str);
+        pBird->setAnchorPoint(Vec2::ANCHOR_MIDDLE_BOTTOM);
+        pBird->setPosition(Vec2(visibleSize * 0.5f));
+        addChild(pBird);
+    }
 }
 
 void CMainScene::initComponent()

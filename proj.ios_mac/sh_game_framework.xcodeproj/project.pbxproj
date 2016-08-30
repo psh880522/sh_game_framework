@@ -22,6 +22,9 @@
 		2D0E53E31D5DAB3F006AC7B0 /* bird.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D0E53E01D5DAB3F006AC7B0 /* bird.png */; };
 		2D0E53E61D5DAB8A006AC7B0 /* Bird.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2D0E53E41D5DAB89006AC7B0 /* Bird.cpp */; };
 		2D0E53E91D5DAF09006AC7B0 /* AniRenderComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2D0E53E71D5DAF09006AC7B0 /* AniRenderComponent.cpp */; };
+		2DB8498B1D6ED65B00A1E2B0 /* BirdCommander.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DB849891D6ED65B00A1E2B0 /* BirdCommander.cpp */; };
+		2DB8498E1D6ED8B700A1E2B0 /* BirdMoveState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DB8498C1D6ED8B700A1E2B0 /* BirdMoveState.cpp */; };
+		2DB849921D6EDA5700A1E2B0 /* MoveComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DB849901D6EDA5700A1E2B0 /* MoveComponent.cpp */; };
 		2DE7AEED1D62E2AA00A292F8 /* MainScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DE7AEEB1D62E2AA00A292F8 /* MainScene.cpp */; };
 		2DE7AEF41D62F98600A292F8 /* BirdIdleState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DE7AEF21D62F98600A292F8 /* BirdIdleState.cpp */; };
 		3EACC98F19EE6D4300EB3C5E /* res in Resources */ = {isa = PBXBuildFile; fileRef = 3EACC98E19EE6D4300EB3C5E /* res */; };
@@ -138,6 +141,12 @@
 		2D0E53E51D5DAB8A006AC7B0 /* Bird.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Bird.hpp; sourceTree = "<group>"; };
 		2D0E53E71D5DAF09006AC7B0 /* AniRenderComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AniRenderComponent.cpp; sourceTree = "<group>"; };
 		2D0E53E81D5DAF09006AC7B0 /* AniRenderComponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AniRenderComponent.hpp; sourceTree = "<group>"; };
+		2DB849891D6ED65B00A1E2B0 /* BirdCommander.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BirdCommander.cpp; sourceTree = "<group>"; };
+		2DB8498A1D6ED65B00A1E2B0 /* BirdCommander.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BirdCommander.hpp; sourceTree = "<group>"; };
+		2DB8498C1D6ED8B700A1E2B0 /* BirdMoveState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BirdMoveState.cpp; sourceTree = "<group>"; };
+		2DB8498D1D6ED8B700A1E2B0 /* BirdMoveState.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BirdMoveState.hpp; sourceTree = "<group>"; };
+		2DB849901D6EDA5700A1E2B0 /* MoveComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MoveComponent.cpp; sourceTree = "<group>"; };
+		2DB849911D6EDA5700A1E2B0 /* MoveComponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MoveComponent.hpp; sourceTree = "<group>"; };
 		2DE7AEEB1D62E2AA00A292F8 /* MainScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainScene.cpp; sourceTree = "<group>"; };
 		2DE7AEEC1D62E2AA00A292F8 /* MainScene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MainScene.hpp; sourceTree = "<group>"; };
 		2DE7AEF21D62F98600A292F8 /* BirdIdleState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BirdIdleState.cpp; sourceTree = "<group>"; };
@@ -335,6 +344,15 @@
 			name = game;
 			sourceTree = "<group>";
 		};
+		2DB849881D6ED63300A1E2B0 /* Commander */ = {
+			isa = PBXGroup;
+			children = (
+				2DB849891D6ED65B00A1E2B0 /* BirdCommander.cpp */,
+				2DB8498A1D6ED65B00A1E2B0 /* BirdCommander.hpp */,
+			);
+			name = Commander;
+			sourceTree = "<group>";
+		};
 		2DE7AEEE1D62F8B400A292F8 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
@@ -347,6 +365,7 @@
 		2DE7AEEF1D62F8C200A292F8 /* Object */ = {
 			isa = PBXGroup;
 			children = (
+				2DB849881D6ED63300A1E2B0 /* Commander */,
 				2DE7AEF11D62F8ED00A292F8 /* State */,
 				2D0E53E41D5DAB89006AC7B0 /* Bird.cpp */,
 				2D0E53E51D5DAB8A006AC7B0 /* Bird.hpp */,
@@ -359,6 +378,8 @@
 			children = (
 				2D0E53E71D5DAF09006AC7B0 /* AniRenderComponent.cpp */,
 				2D0E53E81D5DAF09006AC7B0 /* AniRenderComponent.hpp */,
+				2DB849901D6EDA5700A1E2B0 /* MoveComponent.cpp */,
+				2DB849911D6EDA5700A1E2B0 /* MoveComponent.hpp */,
 			);
 			name = Component;
 			sourceTree = "<group>";
@@ -368,6 +389,8 @@
 			children = (
 				2DE7AEF21D62F98600A292F8 /* BirdIdleState.cpp */,
 				2DE7AEF31D62F98600A292F8 /* BirdIdleState.hpp */,
+				2DB8498C1D6ED8B700A1E2B0 /* BirdMoveState.cpp */,
+				2DB8498D1D6ED8B700A1E2B0 /* BirdMoveState.hpp */,
 			);
 			name = State;
 			sourceTree = "<group>";
@@ -609,7 +632,10 @@
 				2D0E53E61D5DAB8A006AC7B0 /* Bird.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				2D0E53D01D5C24AB006AC7B0 /* Commander.cpp in Sources */,
+				2DB849921D6EDA5700A1E2B0 /* MoveComponent.cpp in Sources */,
+				2DB8498E1D6ED8B700A1E2B0 /* BirdMoveState.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
+				2DB8498B1D6ED65B00A1E2B0 /* BirdCommander.cpp in Sources */,
 				2D0E53D41D5C2A26006AC7B0 /* StateMachine.cpp in Sources */,
 				2DE7AEED1D62E2AA00A292F8 /* MainScene.cpp in Sources */,
 			);

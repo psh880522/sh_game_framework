@@ -7,8 +7,6 @@
 //
 
 #include "GameObject.hpp"
-#include "Commander.hpp"
-#include "StateMachine.hpp"
 
 NS_CORE_BEGIN
 
@@ -21,7 +19,45 @@ CGameObject::CGameObject()
 
 CGameObject::~CGameObject()
 {
+    if(m_pCommander != nullptr)
+    {
+        m_pCommander->release();
+    }
     
+    if(m_pStateMachine != nullptr)
+    {
+        m_pStateMachine->release();
+    }
+}
+
+void CGameObject::changeState(int nState, CStateMachine::ETransition eTransition)
+{
+    if(m_pStateMachine != nullptr)
+    {
+        m_pStateMachine->changeState(nState, eTransition);
+    }
+}
+
+int CGameObject::getCurrentState()
+{
+    if(m_pStateMachine != nullptr)
+    {
+        return m_pStateMachine->getCurrentState();
+    }
+    
+    return -1;
+}
+
+void CGameObject::addCommander(CCommander* pCommander)
+{
+    pCommander->retain();
+    m_pCommander = pCommander;
+}
+
+void CGameObject::addStateMachine(CStateMachine* pStateMachine)
+{
+    pStateMachine->retain();
+    m_pStateMachine = pStateMachine;
 }
 
 bool CGameObject::init()

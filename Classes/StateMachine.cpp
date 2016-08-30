@@ -47,7 +47,10 @@ void CStateMachine::initialize()
 
 void CStateMachine::update(float delta)
 {
-    CC_ASSERT(m_mStates.find(m_nCurrentState) != m_mStates.end());
+    if(m_mStates.find(m_nCurrentState) == m_mStates.end())
+    {
+        return;
+    }
     
     CState* pCurrentState = m_mStates.at(m_nCurrentState);
     pCurrentState->onUpdate(delta);
@@ -79,9 +82,12 @@ void CStateMachine::changeState(int nState, ETransition eTransition)
         case ETransition::TR_OVERRIDE:
         {
             m_nNextState = nState;
-            
-            CState* pCurrentState = m_mStates.at(m_nCurrentState);
-            pCurrentState->onExit();
+
+            if(m_mStates.find(m_nCurrentState) != m_mStates.end())
+            {
+                CState* pCurrentState = m_mStates.at(m_nCurrentState);
+                pCurrentState->onExit();
+            }
             
             _changeNextState();
         }break;

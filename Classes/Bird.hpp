@@ -15,6 +15,18 @@
 class CBird : public core::CGameObject
 {
 public:
+    enum ECommand
+    {
+        CMD_MOVE,
+    };
+    
+    enum EState
+    {
+        ST_IDLE,
+        ST_MOVE,
+    };
+    
+public:
     CBird();
     virtual ~CBird();
     

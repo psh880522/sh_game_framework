@@ -21,6 +21,7 @@ public:
     virtual ~CAniRenderComponent();
     
     void setAnimation(const std::string& strAniName, const bool bLoop);
+    void addAnimation(const std::string& strAniName, bool bLoop, float fDelay = 0);
     bool setSkin(const std::string& skinName);
     void setPosition(const cocos2d::Vec2& position);
     

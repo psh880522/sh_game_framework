@@ -8,7 +8,12 @@
 
 #include "Bird.hpp"
 #include "AniRenderComponent.hpp"
-#include "StateMachine.hpp"
+#include "MoveComponent.hpp"
+
+#include "BirdIdleState.hpp"
+#include "BirdMoveState.hpp"
+
+#include "BirdCommander.hpp"
 
 USING_NS_CORE;
 USING_NS_CC;
@@ -31,22 +36,25 @@ CBird *CBird::create(const std::string& strSkin)
 
 CBird::CBird()
 {
-    
 }
 
 CBird::~CBird()
 {
-    
 }
 
 void CBird::initialize(const std::string& strSkin)
 {
+    setContentSize(Size(100, 100));
+    
     CAniRenderComponent* pCom = dynamic_cast<CAniRenderComponent*>(getComponent("body"));
     if(pCom != nullptr)
     {
         pCom->setSkin(strSkin);
-        pCom->setAnimation("breath_001", true);
     }
+    
+    m_pStateMachine->changeState(ST_IDLE, CStateMachine::TR_OVERRIDE);
+    
+    scheduleUpdate();
 }
 
 void CBird::setContentSize(const cocos2d::Size& size)
@@ -63,17 +71,29 @@ void CBird::setContentSize(const cocos2d::Size& size)
 void CBird::initComponent()
 {
     addComponent(CAniRenderComponent::create("body", "bird"));
+    addComponent(CMoveComponent::create("move"));
 }
 
 void CBird::initStateMachine()
 {
-    m_pStateMachine = CStateMachine::create();
+    addStateMachine(CStateMachine::create());
+    m_pStateMachine->addState(ST_IDLE, CBirdIdleState::create(this));
+    m_pStateMachine->addState(ST_MOVE, CBirdMoveState::create(this));
 }
 
 void CBird::initCommander()
 {
+    addCommander(CBirdCommander::create(this));
 }
 
 void CBird::actionCommand(const cocos2d::Value &value)
 {
+    switch (value.asInt()) {
+        case CMD_MOVE:
+        {
+            changeState(ST_MOVE, CStateMachine::TR_OVERRIDE);
+        }break;
+        default:
+            break;
+    }
 }

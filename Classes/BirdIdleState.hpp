@@ -9,6 +9,20 @@
 #ifndef BirdIdleState_hpp
 #define BirdIdleState_hpp
 
-#include <stdio.h>
+#include "core.h"
+#include "State.hpp"
+
+class CBirdIdleState : public core::CState
+{
+public:
+    static CBirdIdleState* create(core::IGameObject* pOwner);
+    
+    CBirdIdleState(core::IGameObject* pOwner);
+    virtual ~CBirdIdleState();
+    
+    virtual void onEnter();
+    virtual void onUpdate(float delta);
+    virtual void onExit();
+};
 
 #endif /* BirdIdleState_hpp */

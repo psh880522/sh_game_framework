@@ -40,6 +40,11 @@ void CAniRenderComponent::setAnimation(const std::string& strAniName, const bool
     m_pRenderer->setAnimation(0, strAniName, bLoop);
 }
 
+void CAniRenderComponent::addAnimation(const std::string& strAniName, bool bLoop, float fDelay)
+{
+    m_pRenderer->addAnimation(0, strAniName, bLoop, fDelay);
+}
+
 bool CAniRenderComponent::setSkin(const std::string& skinName)
 {
     return m_pRenderer->setSkin(skinName);

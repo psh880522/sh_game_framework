@@ -17,7 +17,7 @@ class CState;
 class CStateMachine : public cocos2d::Ref
 {
 public:
-    enum class ETransition
+    enum ETransition
     {
         TR_SAFE,
         TR_OVERRIDE,
@@ -44,7 +44,7 @@ private:
     cocos2d::Map<int, CState*> m_mStates;
     
     CC_SYNTHESIZE_READONLY(int, m_nCurrentState, CurrentState);
-    CC_SYNTHESIZE(int, m_nNextState,    NextState);
+    CC_SYNTHESIZE_READONLY(int, m_nNextState,    NextState);
 };
 
 NS_CORE_END

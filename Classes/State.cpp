@@ -7,7 +7,6 @@
 //
 
 #include "State.hpp"
-#include "IGameObject.hpp"
 
 NS_CORE_BEGIN
 

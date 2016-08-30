@@ -11,11 +11,11 @@
 
 #include "core.h"
 #include "IGameObject.hpp"
+#include "Commander.hpp"
+#include "StateMachine.hpp"
 
 NS_CORE_BEGIN
 
-class CCommander;
-class CStateMachine;
 class CGameObject
 : public cocos2d::Node
 , public IGameObject
@@ -23,6 +23,13 @@ class CGameObject
 public:
     CGameObject();
     virtual ~CGameObject();
+    
+    void changeState(int nState, CStateMachine::ETransition eTransition);
+    int getCurrentState();
+    
+protected:
+    void addCommander(CCommander* pCommander);
+    void addStateMachine(CStateMachine* pStateMachine);
     
 public: // Node
     virtual bool init() override;

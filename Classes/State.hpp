@@ -10,23 +10,22 @@
 #define State_hpp
 
 #include "core.h"
+#include "IGameObject.hpp"
 
 NS_CORE_BEGIN
 
-class IGameObject;
 class CState : public cocos2d::Ref
 {
 public:
     CState(IGameObject* pOwner);
     virtual ~CState();
     
-    void onEnter();
-    void onUpdate(float delta);
-    void onExit();
+    virtual void onEnter();
+    virtual void onUpdate(float delta);
+    virtual void onExit();
     
 protected:
-    IGameObject* m_pOwner;
-    
+    CC_SYNTHESIZE_READONLY(IGameObject*, m_pOwner, Owner);
     CC_SYNTHESIZE_READONLY(bool, m_bFinished, Finished);
 };
 

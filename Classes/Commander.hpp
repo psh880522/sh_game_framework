@@ -25,7 +25,7 @@ public:
     virtual void actionCommand(const cocos2d::Value& value);
 
 protected:
-    IGameObject* m_pOwner;
+    CC_SYNTHESIZE_READONLY(IGameObject*, m_pOwner, Owner);
 };
 
 NS_CORE_END
